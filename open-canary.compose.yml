@@ -13,6 +13,7 @@ x-common: &common
   restart: unless-stopped
   volumes:
     - ./data/opencanary/.opencanary.conf:/root/.opencanary.conf
+    - ./data/opencanary/log:/var/log/opencanary/
   networks:
     - canary
     # uncomment below if running Samba
@@ -26,9 +27,9 @@ x-common: &common
     #- "[${CANARY_IPV6}]:21:21"
     - "[::]:21:21"
     # SSH
-    # - "22:22"
+    - "[::]22:22"
     # Telnet
-    # - "23:23"
+    - "[::]23:23"
     # TFTP
     # - "69:69"
     # HTTP
@@ -39,10 +40,12 @@ x-common: &common
     # - "123:123"
     # SNMP
     # - "161:161"
+    # SMB
+    - "[::]:445:445"
     # MSSQL
     # - "1433:1433"
     # MYSQL
-    # - "3306:3306"
+    - "[::]3306:3306"
     # RDP
     # - "3389:3389"
     # VNC
@@ -50,7 +53,7 @@ x-common: &common
     # SIP
     # - "5060:5060"
     # REDIS
-    # - "6379:6379"
+    - "[::]6379:6379"
     # TCP Banner
     # - "8001:8001"
     # HTTP Proxy
@@ -64,6 +67,6 @@ services:
     container_name: opencanary_latest
     image: thinkst/opencanary
     build:
-      context: .
+      context: ./opencanary
       dockerfile: Dockerfile.latest
 

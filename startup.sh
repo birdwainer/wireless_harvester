@@ -6,6 +6,9 @@ export CANARY_IPV6=$(ip -6 a s dev $CANARY_NIC | grep -oP '(?<=inet6\s)[\da-f:]+
 echo $CANARY_IPV4
 echo $CANARY_IPV6
 
+git clone --depth=1 https://github.com/thinkst/opencanary.git
+cp ./oc_custom/*.html ./opencanary/opencanary/modules/data/http/skin/nasLogin/
+
 /usr/bin/docker compose -f open-canary.compose.yml up -d
 
 # echo "Starting Kismet listenin on $KISMET_NIC"
