@@ -20,7 +20,7 @@ fi
 
 TSHARK_FILE="$CAPTURE_PREFIX"_tshark.pcapng
 echo "Starting tshark listening on $CANARY_NIC with data sent to $TSHARK_FILE"
-/usr/bin/tshark -Q -b duration:600 -b filesize:10240 -w data/pcaps/tshark/$TSHARK_FILE -i $CANARY_NIC &
+/usr/bin/tshark -Q -b duration:600 -b filesize:10240 -f "http.host not bw-conference-data.s3.us-east-1.amazonaws.com" -w data/pcaps/tshark/$TSHARK_FILE -i $CANARY_NIC &
 echo "$!" > tshark.pid
 
 KISMET_FILE="$CAPTURE_PREFIX"_kismet.km
