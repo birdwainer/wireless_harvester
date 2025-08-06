@@ -6,4 +6,5 @@
 *.tar.gz
 data/**/*
 opencanary
+dont_sync
 

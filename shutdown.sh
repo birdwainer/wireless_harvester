@@ -12,4 +12,11 @@ if [ -f "kismet.pid" ]; then
 	rm kismet.pid;
 fi
 
+if [ -f "hackrf.pid" ]; then
+	HRF_PID=$(/usr/bin/cat hackrf.pid);
+	sudo kill $HRF_PID;
+	rm hackrf.pid;
+fi
+
+
 /usr/bin/docker compose -f open-canary.compose.yml down
