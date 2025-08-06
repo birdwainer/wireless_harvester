@@ -4,6 +4,9 @@
 *.kismet
 *.kismet-journal
 *.tar.gz
+*.pid
+to_archive
+archived
 data/**/*
 opencanary
 dont_sync
