@@ -1,1 +1,9 @@
 *.pcapng
+*.swo
+*.swp
+*.kismet
+*.kismet-journal
+*.tar.gz
+data/**/*
+opencanary
+

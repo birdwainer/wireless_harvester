@@ -7,12 +7,12 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 2001:db8::/64
-          gateway: 2001:db8::1
+      - subnet: 2001:db8::/64
+        gateway: 2001:db8::1
 x-common: &common
   restart: unless-stopped
   volumes:
-    - ./data/opencanary/.opencanary.conf:/root/.opencanary.conf
+    - ./oc_custom/opencanary.conf:/root/.opencanary.conf
     - ./data/opencanary/log:/var/log/opencanary/
   networks:
     - canary
@@ -25,27 +25,27 @@ x-common: &common
     # FTP
     #- "${CANARY_IPV4}:21:21"
     #- "[${CANARY_IPV6}]:21:21"
-    - "[::]:21:21"
+    - "21:21"
     # SSH
-    - "[::]22:22"
+    - "22:22"
     # Telnet
-    - "[::]23:23"
+    - "23:23"
     # TFTP
     # - "69:69"
     # HTTP
     #- "${CANARY_IPV4}:80:80"
     #- "[${CANARY_IPV6}]:80:80"
-    - "[::]:80:80"
+    - "80:80"
     # NTP
     # - "123:123"
     # SNMP
     # - "161:161"
     # SMB
-    - "[::]:445:445"
+    - "445:445"
     # MSSQL
     # - "1433:1433"
     # MYSQL
-    - "[::]3306:3306"
+    - "3306:3306"
     # RDP
     # - "3389:3389"
     # VNC
@@ -53,7 +53,7 @@ x-common: &common
     # SIP
     # - "5060:5060"
     # REDIS
-    - "[::]6379:6379"
+    - "6379:6379"
     # TCP Banner
     # - "8001:8001"
     # HTTP Proxy
