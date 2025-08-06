@@ -23,6 +23,12 @@ echo "Starting tshark listening on $CANARY_NIC with data sent to $TSHARK_FILE"
 /usr/bin/tshark -Q -b duration:600 -b filesize:10240 -f "not host bw-conference-data.s3.us-east-1.amazonaws.com" -w data/pcaps/tshark/$TSHARK_FILE -i $CANARY_NIC &
 echo "$!" > tshark.pid
 
+# prep interface for kismet
+echo "Prepping interface $KISMET_NIC to use kismet"
+sudo ip link set $KISMET_NIC down
+sudo iw $KISMET_NIC set monitor control
+sudo ip link set $KISMET_NIC up
+
 KISMET_FILE="$CAPTURE_PREFIX"_kismet
 echo "Starting Kismet listening on $KISMET_NIC"
 sudo /usr/bin/kismet -s -c $KISMET_NIC -c hci0 --override kismet.conf -t $KISMET_FILE &

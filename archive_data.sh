@@ -17,5 +17,5 @@ cd $STAGING_DIR && /usr/bin/tar czf ../$ARCHIVE_DIR/$ARCHIVE_FILE.tar.gz . && cd
 
 /usr/local/bin/aws s3 sync --quiet $ARCHIVE_DIR s3://bw-conference-data
 
-/usr/bin/rm -r $STAGING_DIR/*
+#/usr/bin/rm -r $STAGING_DIR/*
 /usr/bin/rm -r $ARCHIVE_DIR/*
